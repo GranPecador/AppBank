@@ -1,0 +1,8 @@
+include ':app'
+rootProject.name = "AppBank"
+
+sourceControl {
+    gitRepository(java.net.URI.create("https://github.com/GranPecador/Deposit.git")) {
+        producesModule("com.example.deposit:deposit_module")
+    }
+}
