@@ -96,7 +96,8 @@ andoidTest:
     # - schroot -c Ubuntu_${release}_${arch}_ribuilder -- make -j
     - echo "Model ${model} with android ${android_version} testing SUCCESS" 
 
-device_test:android_${model}_${android_version}:
+device_test_create:
+# android_${model}_${android_version}:
   stage: device_test
   variables:
       model: ${model}
