@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.credit.CreditActivity
 import com.example.deposit.DepositActivity
 import com.google.android.material.internal.ContextUtils.getActivity
 import org.greenrobot.eventbus.EventBus
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         textView = findViewById(R.id.text)
+        textView.text = "Hey brat"
 
     }
 
@@ -38,24 +40,23 @@ class MainActivity : AppCompatActivity() {
 
 
     fun onButton1(view: View){
-        EventBus.getDefault().post( MessageEventButton1("Hello 1!"));
+        EventBus.getDefault().post( MessageEventButton1(""));
     }
 
     fun onButton2(view: View){
-        EventBus.getDefault().post( MessageEventButton2("2222222!"));
+        EventBus.getDefault().post( MessageEventButton2(""));
     }
 
     // This method will be called when a MessageEvent is posted (in the UI thread for Toast)
     @Subscribe//(threadMode = ThreadMode.MAIN)
     fun handleButton1(event:  MessageEventButton1) {
-        textView.text = event.message
         startActivity(Intent(this@MainActivity, DepositActivity::class.java))
     }
 
     // This method will be called when a SomeOtherEvent is posted
     @Subscribe
     fun handleButton2(event: MessageEventButton2) {
-        textView.text = event.message
+        startActivity(Intent(this@MainActivity, CreditActivity::class.java))
     }
 }
 
