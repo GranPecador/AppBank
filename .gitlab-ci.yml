@@ -2,8 +2,8 @@ stages:
   - environment
   - lint
   - build
-  - base_test
-  - device_test
+  - base_tests
+  - device_tests
   # - deploy
 
 .updateContainerJob:
@@ -63,7 +63,7 @@ assembleDebug:
 
 debugTests:
   image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
-  stage: base_test
+  stage: base_tests
   # before_script:
   #   - chmod +x gradlew
   script:
@@ -72,7 +72,7 @@ debugTests:
 
 unitTest:
   image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
-  stage: base_test
+  stage: base_tests
   # before_script:
   #   - chmod +x gradlew
   script:
@@ -81,7 +81,7 @@ unitTest:
 
 andoidTest:
   image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
-  stage: base_test
+  stage: base_tests
   # before_script:
   #   - chmod +x gradlew
   script:
@@ -96,20 +96,26 @@ andoidTest:
     # - schroot -c Ubuntu_${release}_${arch}_ribuilder -- make -j
     - echo "Model ${model} with android ${android_version} testing SUCCESS" 
 
-device_test_galaxy_7:
-# android_${model}_${android_version}:
-  stage: device_test
+galaxy_7_android_8:
+  stage: device_tests
   variables:
     model: "Samsung Galaxy S7"
-    # model: ${model}
-    # android_version: ${android_version}
     android_version: "8"
   <<: *adroid_test
-  # with_items:
-  #   - { model: "SamsungGalaxyS7", android_version: "8" }
-  #   - { model: "SamsungGalaxyS7", android_version: "9" }
-    # - { release: trusty, arch: i386 }
-    # - { release: xenial, arch: amd64 }
+
+galaxy_10_android_9:
+  stage: device_tests
+  variables:
+    model: "Samsung Galaxy S7"
+    android_version: "8"
+  <<: *adroid_test
+
+galaxy_20_android_9:
+  stage: device_tests
+  variables:
+    model: "Samsung Galaxy S7"
+    android_version: "8"
+  <<: *adroid_test
 
 
 # deploy:
