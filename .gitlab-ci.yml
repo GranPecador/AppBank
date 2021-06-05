@@ -88,7 +88,7 @@ andoidTest:
     # - ./gradlew -Pci --console=plain :app:connectedAndroidTest
     - echo 1
 
-.device_test: &adroid_test
+.device_test_template: &adroid_test
   script:
     # - mkdir build_${release}_${arch}
     # - cd build_${release}_${arch}
@@ -96,16 +96,18 @@ andoidTest:
     # - schroot -c Ubuntu_${release}_${arch}_ribuilder -- make -j
     - echo "Model ${model} with android ${android_version} testing SUCCESS" 
 
-device_test_create:
+device_test_galaxy_7:
 # android_${model}_${android_version}:
   stage: device_test
   variables:
-      model: ${model}
-      android_version: ${android_version}
+    model: "Samsung Galaxy S7"
+    # model: ${model}
+    # android_version: ${android_version}
+    android_version: "8"
   <<: *adroid_test
-  with_items:
-    - { model: "SamsungGalaxyS7", android_version: "8" }
-    - { model: "SamsungGalaxyS7", android_version: "9" }
+  # with_items:
+  #   - { model: "SamsungGalaxyS7", android_version: "8" }
+  #   - { model: "SamsungGalaxyS7", android_version: "9" }
     # - { release: trusty, arch: i386 }
     # - { release: xenial, arch: amd64 }
 
