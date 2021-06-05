@@ -1,9 +1,13 @@
 stages:
   - environment
   - lint
-  - build
+  - build_debug
   - base_tests
   - device_tests
+  - build_release
+  - release
+  - deploy_staging
+  - deploy_production
   # - deploy
 
 .updateContainerJob:
@@ -51,7 +55,7 @@ lintDebug:
 
 assembleDebug:
   image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
-  stage: build
+  stage: build_debug
   # before_script:
   #   - chmod +x gradlew
   script:
@@ -117,6 +121,44 @@ galaxy_20_android_9:
     android_version: "8"
   <<: *adroid_test
 
+
+buildRelease:
+  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  stage: build_release
+  # before_script:
+  #   - chmod +x gradlew
+  script:
+    # - ./gradlew -Pci --console=plain :app:connectedAndroidTest
+    - echo 1
+
+release:
+  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  stage: release
+  # before_script:
+  #   - chmod +x gradlew
+  script:
+    # - ./gradlew -Pci --console=plain :app:connectedAndroidTest
+    - echo 1
+
+deployStaging:
+  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  stage: deploy_staging
+  # before_script:
+  #   - chmod +x gradlew
+  script:
+    # - ./gradlew -Pci --console=plain :app:connectedAndroidTest
+    - echo 1
+
+deployProduction:
+  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  stage: deploy_production
+  # before_script:
+  #   - chmod +x gradlew
+  script:
+    # - ./gradlew -Pci --console=plain :app:connectedAndroidTest
+    - echo 1
+  rules:
+    - when: manual
 
 # deploy:
 #   image: maven:3.3.9-jdk-8
