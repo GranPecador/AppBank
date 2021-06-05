@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.deposit.DepositActivity
 import com.google.android.material.internal.ContextUtils.getActivity
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -48,7 +49,7 @@ class MainActivity : AppCompatActivity() {
     @Subscribe//(threadMode = ThreadMode.MAIN)
     fun handleButton1(event:  MessageEventButton1) {
         textView.text = event.message
-        startActivity(Intent(this@MainActivity, MainActivity2::class.java))
+        startActivity(Intent(this@MainActivity, DepositActivity::class.java))
     }
 
     // This method will be called when a SomeOtherEvent is posted
