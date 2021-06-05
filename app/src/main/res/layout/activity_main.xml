@@ -19,23 +19,21 @@
         app:layout_constraintVertical_bias="0.271" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/depositButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:width="@dimen/width_button"
-        android:onClick="onButton1"
         android:text="@string/deposit"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/creditButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/creditButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:width="@dimen/width_button"
-        android:onClick="onButton2"
         android:text="@string/credit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
