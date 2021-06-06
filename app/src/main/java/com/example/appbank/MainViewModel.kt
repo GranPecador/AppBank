@@ -11,21 +11,21 @@ class MainViewModel() : ViewModel() {
 
     init {
         viewModelScope.launch {
-            EventBusModel.produceEventSus(MessageEvent.MessageAmount("0.0"))
+            EventBusModel.produceEventSus(MessageEvent.MessageAmount(0.0))
         }
     }
 
-    private val _amount: MutableLiveData<String> = MutableLiveData("0.1")
-    val amount:LiveData<String> = _amount
+    private val _amount: MutableLiveData<Double> = MutableLiveData(0.1)
+    val amount:LiveData<Double> = _amount
     val events = EventBusModel.events.asLiveData()
 
     fun getSum() {
         viewModelScope.launch {
-            EventBusModel.produceEventSus(MessageEvent.MessageAmount("0.0"))
+            EventBusModel.produceEventSus(MessageEvent.MessageAmount(0.0))
         }
     }
 
-     fun postAmount(amountNew: String) {
+     fun postAmount(amountNew: Double) {
         _amount.value = amountNew
     }
 }

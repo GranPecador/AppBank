@@ -55,6 +55,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getSum()
+    }
+
     private fun handleMainEvent(event: MessageEvent) =
         when (event) {
             is MessageEvent.MessageDeposit -> {
