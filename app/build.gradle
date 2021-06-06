@@ -70,9 +70,9 @@ dependencies {
     implementation "org.greenrobot:eventbus:$eventbus_version"
     annotationProcessor "org.greenrobot:eventbus-annotation-processor:$eventbus_version"
 
-    api group: 'com.deposit', name: 'app', version: '2.0.1', ext: 'aar', classifier: 'debug'
+    api group: 'com.deposit', name: 'app', version: '2.0.3', ext: 'aar', classifier: 'debug'
     api group: 'com.stylelibrary', name: 'app', version: '1.4', ext: 'aar', classifier: 'debug'
-    api group: 'com.credit', name: 'app', version: '1.6', ext: 'aar', classifier: 'debug'
+    api group: 'com.credit', name: 'app', version: '1.6.1', ext: 'aar', classifier: 'debug'
     api group: 'com.eventbus', name: 'app', version: '1.7', ext: 'jar'
 
     testImplementation 'junit:junit:4.13.2'

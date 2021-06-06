@@ -29,11 +29,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val arguments = intent.extras
-        val name = arguments!!["amount"].toString()
+        val name = arguments?.get("amount")?.toString()
 
         setContentView(R.layout.activity_main)
 
-        if (name.isNullOrEmpty()){
+        if ((name.isNullOrEmpty()) || (name == "null")) {
             val settings: SharedPreferences = getSharedPreferences("TWO_INT_SAVING", Context.MODE_PRIVATE)
             val name = settings.getString("amount", "10000.0")
         }
