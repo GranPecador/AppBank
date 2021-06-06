@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var textView: TextView
     private lateinit var viewModel: EventBusViewModel
-    var amount = -100000.0
+    private var amount = -100000.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         }
         if (amount == -100000.0)
             lifecycleScope.launch {
-                EventBusModel.produceEventSus(MessageEvent.MessageAmount(10000))
+                EventBusModel.produceEventSus(MessageEvent.MessageAmount(10000.0))
             }
     }
 
