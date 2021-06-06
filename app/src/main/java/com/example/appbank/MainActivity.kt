@@ -1,6 +1,8 @@
 package com.example.appbank
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -17,6 +19,7 @@ import kotlinx.coroutines.withContext
 import org.example.eventbus.EventBusModel
 import org.example.eventbus.MessageEvent
 
+
 class MainActivity : AppCompatActivity() {
 
     lateinit var textView: TextView
@@ -24,14 +27,25 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val arguments = intent.extras
+        val name = arguments!!["amount"].toString()
+
         setContentView(R.layout.activity_main)
+
+        if (name.isNullOrEmpty()){
+            val settings: SharedPreferences = getSharedPreferences("TWO_INT_SAVING", Context.MODE_PRIVATE)
+            val name = settings.getString("amount", "10000.0")
+        }
+
+
 
         textView = findViewById(R.id.amountAppBankTextView)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.amount.observe(this) {
             textView.text = "Баланс: $it"
         }
-
+        viewModel.postAmount(name?.toDouble() ?: 10000.0)
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 EventBusModel.events.collect {
@@ -57,7 +71,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.getSum()
+        val settings: SharedPreferences = getSharedPreferences("TWO_INT_SAVING", Context.MODE_PRIVATE)
+        val name = settings.getString("amount", "10000.0")
+        if (!name.isNullOrEmpty()) {
+            viewModel.postAmount(name.toDouble())
+        }
     }
 
     private fun handleMainEvent(event: MessageEvent) =
@@ -67,6 +85,7 @@ class MainActivity : AppCompatActivity() {
 
                 val intent = Intent()
                 intent.setClassName(this@MainActivity, "com.example.deposit.${event.message}")
+                intent.putExtra("amount", viewModel.amount.value);
                 startActivity(intent)
             }
             is MessageEvent.MessageCredit -> {
@@ -74,6 +93,7 @@ class MainActivity : AppCompatActivity() {
 
                 val intent = Intent()
                 intent.setClassName(this@MainActivity, "com.example.credit.${event.message}")
+                intent.putExtra("amount", viewModel.amount.value);
                 startActivity(intent)
             }
             is MessageEvent.MessageAmount -> {

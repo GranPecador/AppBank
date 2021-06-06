@@ -15,13 +15,13 @@ class MainViewModel() : ViewModel() {
         }
     }
 
-    private val _amount: MutableLiveData<Double> = MutableLiveData(0.1)
+    private val _amount: MutableLiveData<Double> = MutableLiveData(10000.0)
     val amount:LiveData<Double> = _amount
     val events = EventBusModel.events.asLiveData()
 
     fun getSum() {
         viewModelScope.launch {
-            EventBusModel.produceEventSus(MessageEvent.MessageAmount(0.0))
+            EventBusModel.produceEventSus(MessageEvent.MessageAmount(amount.value?:0.0))
         }
     }
 
