@@ -48,8 +48,8 @@ lintDebug:
     - "export VERSION_CODE=$(($CI_PIPELINE_IID)) && echo $VERSION_CODE"
     - "export VERSION_SHA=`echo ${CI_COMMIT_SHA:0:8}` && echo $VERSION_SHA"
   script:
-    - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
-    # - echo 1
+#    - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
+     - echo 1
 
 assembleDebug:
   image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
