@@ -33,12 +33,6 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
-        if ((name.isNullOrEmpty()) || (name == "null")) {
-            val settings: SharedPreferences = getSharedPreferences("TWO_INT_SAVING", Context.MODE_PRIVATE)
-            val name = settings.getString("amount", "10000.0")
-        }
-
-
 
         textView = findViewById(R.id.amountAppBankTextView)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
@@ -66,15 +60,6 @@ class MainActivity : AppCompatActivity() {
             lifecycleScope.launch {
                 EventBusModel.produceEventSus(MessageEvent.MessageCredit("CreditActivity"))
             }
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val settings: SharedPreferences = getSharedPreferences("TWO_INT_SAVING", Context.MODE_PRIVATE)
-        val name = settings.getString("amount", "10000.0")
-        if (!name.isNullOrEmpty()) {
-            viewModel.postAmount(name.toDouble())
         }
     }
 
