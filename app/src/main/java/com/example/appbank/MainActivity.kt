@@ -66,7 +66,6 @@ class MainActivity : AppCompatActivity() {
     private fun handleMainEvent(event: MessageEvent) =
         when (event) {
             is MessageEvent.MessageDeposit -> {
-                Log.e("avt depocit", "")
 
                 val intent = Intent()
                 intent.setClassName(this@MainActivity, "com.example.deposit.${event.message}")
@@ -74,7 +73,6 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             is MessageEvent.MessageCredit -> {
-                Log.e("act credit", "")
 
                 val intent = Intent()
                 intent.setClassName(this@MainActivity, "com.example.credit.${event.message}")
@@ -82,7 +80,6 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             is MessageEvent.MessageAmount -> {
-                Log.e("when amount mes", "")
                 viewModel.postAmount(event.amount)
             }
             else -> {
