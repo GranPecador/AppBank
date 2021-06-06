@@ -16,17 +16,15 @@ buildscript {
     }
 }
 
-apply from: "app/sub/secret.gradle"
-
 allprojects {
     repositories {
         google()
         jcenter()
         maven {
-            url "s3://psb.android.s3.amazonaws.com"
+            url System.getenv('URL')
             credentials(AwsCredentials) {
-                it.accessKey("$ACCESS_KEY")
-                it.secretKey("$SECRET_KEY")
+                accessKey(System.getenv('ACCESS_KEY'))
+                secretKey(System.getenv('SECRET_KEY'))
             }
         }
     }

@@ -1,6 +1,5 @@
 *.iml
 .gradle
-
 .idea
 .DS_Store
 /build
@@ -8,5 +7,4 @@
 .externalNativeBuild
 .cxx
 local.properties
-
-app/sub/secret.gradle
+env.bat
