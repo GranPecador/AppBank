@@ -72,7 +72,7 @@ dependencies {
 
     api group: 'com.deposit', name: 'app', version: '2.0.3', ext: 'aar', classifier: 'debug'
     api group: 'com.stylelibrary', name: 'app', version: '1.4', ext: 'aar', classifier: 'debug'
-    api group: 'com.credit', name: 'app', version: '1.6.1', ext: 'aar', classifier: 'debug'
+    api group: 'com.credit', name: 'app', version: '1.6.2', ext: 'aar', classifier: 'debug'
     api group: 'com.eventbus', name: 'app', version: '1.7', ext: 'jar'
 
     testImplementation 'junit:junit:4.13.2'
